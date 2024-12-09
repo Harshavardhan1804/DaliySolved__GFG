@@ -1,0 +1,24 @@
+Insert Interval
+
+
+
+
+https://www.geeksforgeeks.org/problems/insert-interval-1666733333/1
+
+
+class Solution:
+    def insertInterval(self, intervals, newInterval):
+        
+        intervals.append(newInterval)
+        intervals.sort()
+        
+        mergedIntervals = []
+        
+        for interval in intervals:
+            if mergedIntervals and mergedIntervals[-1][1] >= interval[0]:
+                mergedIntervals[-1][1] = max(mergedIntervals[-1][1],interval[1])
+            else:
+                mergedIntervals.append(interval)
+        
+        return mergedIntervals
+        
