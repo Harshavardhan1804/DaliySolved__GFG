@@ -1,0 +1,48 @@
+
+2981. Find Longest Special Substring That Occurs Thrice I
+
+class Solution:
+    def maximumLength(self, s: str) -> int:
+        
+
+        substrings = {}
+
+        for i in range(len(s)):    
+            for j in range( i ,len(s)):
+                if s[i] == s[j]:
+                    if s[i : j + 1] not in substrings:
+                        substrings[s[i : j + 1]] = 1
+                    else:
+                        substrings[s[i : j + 1]] += 1
+                else:
+                    break
+
+        count = -1
+        for key in substrings:
+            if substrings[key] >= 3:
+                count = max(count , len(key))
+        
+        #print(substrings)
+        return count
+
+        # substr_count = {}
+        # n = len(s)
+        
+        # for i in range(n):
+        #     for j in range(i, n ):
+        #         if s[i] == s[j]:
+        #             substr = s[i:j + 1]
+        #             if substr in substr_count:
+        #                 substr_count[substr] += 1
+        #             else:
+        #                 substr_count[substr] = 1
+        #         else:
+        #             break
+            
+        # max_len = -1
+        # for substring, count in substr_count.items():
+        #     if count >= 3:
+        #         print(len(substring),substring)
+        #         max_len = max(max_len, len(substring))
+        # print(substr_count)
+        # return max_len
