@@ -1,0 +1,23 @@
+Merge Without Extra Space
+
+
+
+
+def mergeArrays(self, a, b):
+        
+        left = 0
+        right = len(a) - 1
+        start = 0
+        
+        while right >=0 and start < len(b):
+            if(a[right] > b[start]):
+                temp = a[right]
+                a[right] = b[start]
+                b[start] = temp
+                right -= 1
+            start += 1
+        
+        a.sort()
+        b.sort()
+        
+        
