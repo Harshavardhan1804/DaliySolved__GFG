@@ -1,0 +1,44 @@
+2461. Maximum Sum of Distinct Subarrays With Length K
+
+
+
+
+import java.util.HashSet;
+import java.util.Set;
+
+class Solution {
+    public long maximumSubarraySum(int[] nums, int k) {
+        Set<Integer> uniques = new HashSet<>();
+
+        long sum = 0;
+        long maxsum = 0;
+        int left = 0;
+        int right = 0;
+
+        while(right < nums.length){
+            
+
+            if(!uniques.contains(nums[right])){
+                uniques.add(nums[right]);
+                sum += nums[right];
+            }
+            else{
+                while(uniques.contains(nums[right])){
+                    uniques.remove(nums[left]);
+                    sum -= nums[left];
+                    left++;
+                }  
+                uniques.add(nums[right]);
+                sum += nums[right];
+            }
+            right++;
+            if(uniques.size() == k){
+                maxsum = Math.max(maxsum,sum);
+                uniques.remove(nums[left]);
+                sum -= nums[left];
+                left++;
+            }
+        }
+        return maxsum;
+    }
+}
