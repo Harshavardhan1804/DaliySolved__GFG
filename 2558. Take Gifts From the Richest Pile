@@ -1,0 +1,22 @@
+2558. Take Gifts From the Richest Pile
+
+
+
+
+import heapq
+class Solution:
+    def pickGifts(self, gifts: List[int], k: int) -> int:
+        
+
+        heap = []
+
+        for gift in gifts:
+            heapq.heappush(heap,-gift)
+        
+        for i in range(k):
+            item = heapq.heappop(heap)
+            item = int(math.sqrt(-item))
+            heapq.heappush(heap,-item)
+
+        total = sum(heap)
+        return abs(total)
