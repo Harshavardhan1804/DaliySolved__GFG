@@ -1,0 +1,41 @@
+2593. Find Score of an Array After Marking All Elements
+
+
+
+import heapq
+
+class Solution:
+    def findScore(self, nums: List[int]) -> int:
+        
+        heap = []
+
+        for ind,val in enumerate(nums):
+            heapq.heappush(heap,(val,ind))
+        values = set()
+        index = set()
+        count = 0
+        while heap:
+            val,ind = map(int,heapq.heappop(heap))
+            #print(val,ind)
+            if val not in values and ind not in index:
+                count += val
+                values.add(val)
+                index.add(ind)
+                if ind - 1 >=0:
+                    values.add(nums[ind-1])
+                    index.add(ind - 1)
+                if ind + 1 < len(nums):
+                    values.add(nums[ind + 1])
+                    index.add(ind + 1)
+            elif val in values and ind not in index:
+                count += val
+                index.add(ind)
+                if ind - 1 >=0:
+                    values.add(nums[ind-1])
+                    index.add(ind - 1)
+                if ind + 1 < len(nums):
+                    values.add(nums[ind + 1])
+                    index.add(ind + 1)
+        return count
+
+        
