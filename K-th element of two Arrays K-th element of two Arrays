@@ -1,0 +1,42 @@
+
+K-th element of two Arrays
+
+
+
+
+class Solution:
+
+    def kthElement(self, a, b, k):
+        
+        count = 0
+        start_a = 0
+        start_b = 0
+        len_a = len(a)
+        len_b = len(b)
+        while start_a < len_a and start_b < len_b:
+            win = a[start_a]
+            if a[start_a] < b[start_b]:
+                win = a[start_a]
+                start_a += 1
+                count += 1
+            else:
+                win = b[start_b]
+                start_b += 1
+                count += 1
+                
+            
+            if count == k:
+                return win
+        
+        while start_a < len_a:
+            count += 1
+            if count == k:
+                return a[start_a]
+            start_a += 1
+        
+        while start_b < len_b:
+            count += 1
+            if count == k:
+                return b[start_b]
+            start_b += 1
+
