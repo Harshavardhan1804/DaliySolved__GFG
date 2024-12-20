@@ -1,0 +1,19 @@
+Stock span problem
+
+
+
+
+stack = []
+        span = [0] * n  # Initialize span array with zeros
+
+        for i in range(n):
+            # Initialize span for the current price
+            span[i] = 1
+
+            # Calculate span for the current price
+            while stack and a[i] >= a[stack[-1]]:
+                span[i] += span[stack[-1]]
+                stack.pop()
+            
+            # Push the current index to the stack
+            stack.append(i)
