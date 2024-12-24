@@ -1,0 +1,19 @@
+CF -- Count Subarrays
+
+
+
+# cook your dish here
+
+test = int(input())
+for _ in range(test):
+    N = int(input())
+    arr = list(map(int,input().split()))
+    
+    dp = [1] * N
+    for i in range(N - 2,-1,-1):
+        if(arr[i + 1] >= arr[i]):
+            dp[i] += dp[i + 1] 
+        else:
+            dp[i] = 1
+    
+    print(sum(dp))
