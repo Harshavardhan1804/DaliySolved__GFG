@@ -1,0 +1,24 @@
+
+Search in a sorted Matrix
+
+
+
+
+
+class Solution:
+    
+    #Function to search a given number in row-column sorted matrix.
+    def searchMatrix(self, mat, x): 
+    	
+    	
+    	row = 0
+    	col = len(mat[0]) - 1
+    	
+    	while row < len(mat) and col >=0:
+    	    if mat[row][col] == x:
+    	        return True
+    	    elif mat[row][col] < x:
+    	        row += 1
+    	    else:
+    	        col -= 1
+    	return False
