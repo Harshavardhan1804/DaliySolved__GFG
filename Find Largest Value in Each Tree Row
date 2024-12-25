@@ -1,0 +1,33 @@
+Find Largest Value in Each Tree Row
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def largestValues(self, root: Optional[TreeNode]) -> List[int]:
+        
+        if not root:
+            return []
+        q = [root]
+
+        level_max = []
+
+        while q:
+            next_level = []
+            max_value = float('-inf')
+            while q:
+                node = q.pop(0)
+                max_value = max(node.val,max_value)
+                if node.left:
+                    next_level.append(node.left)
+                if node.right:
+                    next_level.append(node.right)
+            q = next_level
+            level_max.append(max_value)
+        
+        return level_max
