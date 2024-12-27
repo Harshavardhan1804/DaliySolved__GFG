@@ -1,0 +1,25 @@
+
+
+1014. Best Sightseeing Pair
+
+
+
+
+
+class Solution:
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
+        
+        n = len(values)
+        suffix = [0] * n
+        suffix[-1] = values[-1] - (n - 1)
+
+        for i in range(n-2,-1,-1):
+            suffix[i] = max(suffix[i+1],values[i] - i)
+        
+        max_score = float('-inf')
+
+        for i in range(n - 1):
+            max_score = max(max_score,values[i] + i + suffix[i+1])
+        
+        return max_score if n > 2 else values[0] + values[1] - 1
+        
